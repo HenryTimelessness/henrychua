@@ -1,0 +1,5 @@
+// if you want to overwrite defaults e.g. color, import the file as shown below see more: https://github.com/mkhairi/materialize-sass
+@import "materialize/components/color";
+$primary-color: color("purple", "darken-3") !default;
+$secondary-color: color("blue", "darken-2") !default;
+@import "materialize";
