@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
 
+  get 'time_block', to: 'welcome#time_block'
 end

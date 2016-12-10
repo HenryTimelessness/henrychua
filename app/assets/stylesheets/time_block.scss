@@ -1,0 +1,24 @@
+$time-block-height: 50px;
+
+.time-block-container {
+  width: 630px;
+  .time-block {
+    background-color: green;
+    height: $time-block-height;
+    width: $time-block-height;
+    display: inline-block;
+    margin: 2px;
+    .time-block-fill {
+      background-color: grey;
+      height: 0px;
+      width: $time-block-height;
+    }
+  }
+}
+
+
+@media #{$small-and-down} {
+  .time-block-container {
+    width: 315px;
+  }
+}
