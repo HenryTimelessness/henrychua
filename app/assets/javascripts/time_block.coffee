@@ -3,7 +3,6 @@ FINAL_HEIGHT = 50
 
 $(document).on 'turbolinks:load', ->
   if $('.time-block-container')[0]
-
     resetTimer()
     startTimer()
 
@@ -19,22 +18,23 @@ resetTimer = ->
   console.log "#{totalBlocksToColour} blocks elapsed"
 
   # colour blocks
-  $('.time-block').slice(-totalBlocksToColour).find('.time-block-fill').height(FINAL_HEIGHT);
+  $('.time-block').slice(-totalBlocksToColour).find('.time-block-fill').height(FINAL_HEIGHT)
   $('.time-block').eq(-Math.floor(totalBlocksToColour)).addClass('active')
-
 
 startTimer = ->
   onComplete = ->
     console.log 'starting next block'
   onInstance = (steps, count) ->
-    height = (count / steps) * FINAL_HEIGHT;
+    ratio = count / steps
+    height = ratio * FINAL_HEIGHT
+    wave_percent = "-#{((90 * (1 - ratio)) + 60)}%"
     current_block = $('.time-block.active')
     current_block.find('.time-block-fill').height(height)
+    current_block.find('.wave').css({ 'top': wave_percent})
     if height == FINAL_HEIGHT
       current_block.removeClass('active') # remove active from current block
       current_block.prev().addClass('active') # find the adjacent block and set it active
       doTimer TIMER, 20, onInstance, onComplete
-
   doTimer TIMER, 20, onInstance, onComplete
 
 # Self adjusting timer that uses the system clock to adjust js inaccuracies
